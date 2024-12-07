@@ -1,7 +1,7 @@
 import {CHANGE_CITY} from "../actions/cityAction.js";
 
 const defaultState = {
-    city: ''
+    city: 'London'
 }
 
 export const cityReducer = (state = defaultState, action) => {

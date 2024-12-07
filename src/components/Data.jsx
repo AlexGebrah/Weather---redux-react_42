@@ -11,24 +11,31 @@ const Data = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-    fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`)
-        .then(result => result.json())
-        .then(data => {
-            dispatch(changeWeather({
-                country: data.sys.country,
-                city: data.name,
-                temp: data.main.temp,
-                pressure: data.main.pressure,
-                sunset: new Date(data.sys.sunset * 1000)
-            }))
-            const message = '';
-            dispatch(changeMessage(message))
-        })
-        .catch(e => {
-            console.log(e);
-            const message = 'Enter correct city name';
-            dispatch(changeMessage(message))
-        })
+        if (!city) return;
+        fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`)
+            .then(result => {
+                if (!result.ok) {
+                    throw new Error(`HTTP error! status: ${result.status}`);
+                }
+                return result.json();
+            })
+            .then(data => {
+                if (!data.sys || !data.main) {
+                    throw new Error('Invalid response structure');
+                }
+                dispatch(changeWeather({
+                    country: data.sys.country,
+                    city: data.name,
+                    temp: data.main.temp,
+                    pressure: data.main.pressure,
+                    sunset: new Date(data.sys.sunset * 1000)
+                }))
+                dispatch(changeMessage(''));
+            })
+            .catch(e => {
+                console.error(e.message);
+                dispatch(changeMessage('Enter correct city name'));
+            })
     }, [city, dispatch]);
 
     return (
