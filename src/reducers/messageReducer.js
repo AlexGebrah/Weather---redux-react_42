@@ -1,14 +1,14 @@
-import {CHANGE_CITY} from "../actions/weatherAction.js";
+import {CHANGE_MESSAGE} from "../actions/messageAction.js";
 
 const defaultState = {
-    message: 'Enter city name'
+    message: ''
 }
 
 export const cityReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case CHANGE_CITY:
+        case CHANGE_MESSAGE:
 
-            return {...state, city: action.payload};
+            return {...state, message: action.payload};
         default:
             return state;
     }

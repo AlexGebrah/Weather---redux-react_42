@@ -4,5 +4,6 @@ import {cityReducer} from "./cityReducer.js";
 
 export const rootReducer = combineReducers({
     weather: weatherReducer,
-    city: cityReducer
+    city: cityReducer,
+    message: messageReducer
 })
