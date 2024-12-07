@@ -1,4 +1,4 @@
-import {CHANGE_CITY} from "../actions/weatherAction.js";
+import {CHANGE_CITY} from "../actions/cityAction.js";
 
 const defaultState = {
     message: 'Enter city name'

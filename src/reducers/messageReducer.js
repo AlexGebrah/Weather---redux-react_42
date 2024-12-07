@@ -4,7 +4,7 @@ const defaultState = {
     message: ''
 }
 
-export const cityReducer = (state = defaultState, action) => {
+export const messageReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CHANGE_MESSAGE:
 
