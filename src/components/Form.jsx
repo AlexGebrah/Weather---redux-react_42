@@ -3,13 +3,12 @@ import {changeCity} from "../actions/cityAction.js";
 import {changeWeather} from "../actions/weatherAction.js";
 
 const Form = () => {
-const {city} = useSelector(state => state.city)
+const {city} = useSelector(state => state.cityState)
     const dispatch = useDispatch();
 
     const getCity = e => {
         e.preventDefault();
-        dispatch(changeWeather(city.payload));
-        dispatch('');
+        dispatch(changeWeather(city));
     }
 
     return (

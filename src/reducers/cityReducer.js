@@ -1,7 +1,7 @@
 import {CHANGE_CITY} from "../actions/cityAction.js";
 
 const defaultState = {
-    message: 'Enter city name'
+    city: ''
 }
 
 export const cityReducer = (state = defaultState, action) => {
