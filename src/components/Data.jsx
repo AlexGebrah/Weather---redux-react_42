@@ -4,12 +4,13 @@ import {api_key, base_url} from "../utils/constants.js";
 import {useDispatch, useSelector} from "react-redux";
 import {changeMessage} from "../actions/messageAction.js";
 import {changeWeather} from "../actions/weatherAction.js";
-
+import {useEffect} from "react";
 
 const Data = () => {
     const {city} = useSelector(state => state.cityState)
     const dispatch = useDispatch();
 
+    useEffect(() => {
     fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`)
         .then(result => result.json())
         .then(data => {
@@ -28,6 +29,7 @@ const Data = () => {
             const message = 'Enter correct city name';
             dispatch(changeMessage(message))
         })
+    }, [city, dispatch]);
 
     return (
         <div>

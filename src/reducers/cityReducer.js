@@ -8,7 +8,7 @@ export const cityReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CHANGE_CITY:
 
-            return {...state, ... action.payload};
+            return {...state, city: action.payload};
         default:
             return state;
     }

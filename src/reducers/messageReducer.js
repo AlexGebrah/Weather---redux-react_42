@@ -8,7 +8,7 @@ export const messageReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CHANGE_MESSAGE:
 
-            return {...state, ... action.payload};
+            return {...state, message: action.payload};
         default:
             return state;
     }

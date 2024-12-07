@@ -8,7 +8,7 @@ const {city} = useSelector(state => state.cityState)
 
     const getCity = e => {
         e.preventDefault();
-        dispatch(changeWeather(city));
+        dispatch(changeCity(city));
     }
 
     return (
