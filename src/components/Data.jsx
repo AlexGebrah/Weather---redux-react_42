@@ -12,6 +12,7 @@ const Data = () => {
 
     useEffect(() => {
         if (!city) return;
+        console.log(`Fetching data for city: ${city}`);
         fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`)
             .then(result => {
                 if (!result.ok) {
@@ -24,11 +25,11 @@ const Data = () => {
                     throw new Error('Invalid response structure');
                 }
                 dispatch(changeWeather({
-                    country: data.sys.country,
-                    city: data.name,
-                    temp: data.main.temp,
-                    pressure: data.main.pressure,
-                    sunset: new Date(data.sys.sunset * 1000)
+                    country: data.sys.country || '',
+                    city: data.name || '',
+                    temp: data.main.temp || 0,
+                    pressure: data.main.pressure || 0,
+                    sunset: data.sys.sunset ? new Date(data.sys.sunset * 1000) : new Date()
                 }))
                 dispatch(changeMessage(''));
             })
@@ -36,7 +37,7 @@ const Data = () => {
                 console.error(e.message);
                 dispatch(changeMessage('Enter correct city name'));
             })
-    }, [city, dispatch]);
+    }, [city]);
 
     return (
         <div>

@@ -1,17 +1,12 @@
 import {CHANGE_WEATHER} from "../actions/weatherAction.js";
 
-const defaultState = {
-    country: '',
-    city: '',
-    temp: '',
-    pressure: '',
-    sunset: ''
-}
+const defaultState = {};
+
 
 export const weatherReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CHANGE_WEATHER:
-            return {...state, ... action.payload };
+            return {...state, weather: action.payload };
         default:
             return state;
     }

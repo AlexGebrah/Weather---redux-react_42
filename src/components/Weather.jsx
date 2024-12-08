@@ -4,6 +4,8 @@ const Weather = () => {
     const {weather} = useSelector(state => state.weatherState);
     const {message} = useSelector(state => state.messageState)
 
+    console.log('Rendered Weather component:', { weather, message });
+
     return (
         <div className={'infoWeath'}>
             {!message && weather && weather.city ? (
